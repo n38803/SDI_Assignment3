@@ -20,60 +20,72 @@
 
 //--GLOBAL VARIABLES	
 var repairTime = 10 
-var empNames = ["Shaun", "Jon", "Eric", "Matt"]; 
+var empNames = ["Shaun", "Jon", "Eric", "Matt, Joseph, Danny, Thomas, Ralf, Jacob, Henry"];
+var adjectives = [
+	"sleeps on the job",
+	"doesn't even know where he is",
+	"calls out all the time.",
+	"are all genuinely crazy."
+	]; 
 //--------------------------------------------------
 	
 
 
 //--OBJECT
-var device = { 
-	name: "HTC EVO",												//property string
-	repairable: true,												//property boolean
-	problems: 3,													//property number
-	issues: ["Freezing", "PowerCycling", "TSP Failure"],			//property array
-	delegation: function(repairs, employees) {									
-		if (repairs > 0) {
+var store = {
+	name: "Wireless South Jersey",
+	staff: 12,
+	technicians: 6,
+	repair: device = { 
+		name: "HTC EVO",												//property string
+		repairable: true,												//property boolean
+		problems: 6,													//property number
+		issues: ["Hardware", "Software", "User Error"],					//property array
+
+// method procedure		
+
+		software: function(appAmnt, totalIssues) {									
+		if (appAmnt > 0) {
 			console.log("By golly, we have some work to do!");
 		} else {
-			console.log("I guess there is no work for today, you're all fired!")
+			console.log("I guess there is no software issue with this..")
 		};
-		var outcome = repairs / employees;
-			console.log("Each employee must complete " + outcome + " repairs if we split the workload.");
-	},					//method procedure -- DONE
-	repairTime: function() {
-		var totalTime = this.problems * this.issues.length / empNames.length;
+		var outcome = appAmnt * totalIssues;
+			console.log("There are " + outcome + " possible directories for the root of your issue(s).");
+			return outcome;
+	},					//method function
+		repairTime: function() {
+		var totalTime = this.problems * this.issues.length / store.technicians;
 		return totalTime;
 	},									//method accessor (getter)
-	addProblem: function(newProblem){
+		addProblem: function(newProblem){
 		this.problems = newProblem;
-	}							//method mutator (changer)
-											
+		}							//method mutator (changer)											
+	},
+	termination: function(exhausted) {
+			console.log("After further deliberation, I've decided to terminate everyone!");
+			for (var i=0, j=empNames.length; i < j; i++) {
+				console.log(empNames[i] + " " + adjectives[i] + " ...");
+			}; 
+			console.log(exhausted);
+	}
 };
 
+//----Main CODE-----
 
+	//call procedure
+device.software(9, device.problems);
+
+	//call accessor
+device.repairTime();
+	//output accessor function return
 console.log("The time it will take to repair this is generally: " + device.repairTime() + " hours.");
-device.addProblem(10);
-console.log("But with this many more problems, it will take: " + device.repairTime() + " hours.");
+
+	//call mutator
+device.addProblem(20);
+	//output mutator function return
+console.log("But if you are saying there are more issues, it's going to take " + device.repairTime() + " hours to repair your " + device.name + ".");
 
 
-/*
+store.termination("... I just can't take it anymore!");
 
-	changeEmployee: function(){
-		console.log(empNames[0] + " cannot complete the repair ...");
-		for (var i=1, j=empNames.length; i < j; i++) {
-			console.log(empNames[i] + ", you're up!");
-			if (i+1 !== j){
-				console.log("For the love of God, " + empNames[i] + ", can you do anything right?!");
-			} else {
-				console.log("Team, I think we have a winner! Get started " + empNames[i] + "!");
-			};
-		};	
-		return empNames;
-		},									//method mutator (changer) -- DONE
-	object: {
-		obj1: "1",
-		obj2: "2",
-		obj3: "3"
-	}													//property object
-	
-	*/
