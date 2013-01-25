@@ -5,12 +5,12 @@
 
 //---START----
 
-	//Object
-	//property boolean 		-- employee is a teck/yes or no
-	//property array 		-- phones employee can work on
-	//property number		-- hours employee is working
-	//property string 		-- names of phone employee can work on
-	//property object 		-- ??
+	//Object				-- phone
+	//property boolean 		-- the phone is repairable
+	//property array 		-- types of known issues for the phone
+	//property number		-- current number of issues with device
+	//property string 		-- software version of the phone
+	//property object 		-- internal application
 	
 	//method procedure 		-- NO RETURN {all else requires return}
 	
@@ -19,10 +19,12 @@
 	//method mutator		--
 
 //--GLOBAL VARIABLES	
-var totalRepairs = 10 
+var repairTime = 10 
 var empNames = ["Shaun", "Jon", "Eric", "Matt"]; 
 //--------------------------------------------------
 	
+
+
 //--OBJECT
 var device = { 
 	name: "HTC EVO",												//property string
@@ -38,133 +40,40 @@ var device = {
 		var outcome = repairs / employees;
 			console.log("Each employee must complete " + outcome + " repairs if we split the workload.");
 	},					//method procedure -- DONE
-	totalDevices: function() {																				
-		//return
+	repairTime: function() {
+		var totalTime = this.problems * this.issues.length / empNames.length;
+		return totalTime;
 	},									//method accessor (getter)
+	addProblem: function(newProblem){
+		this.problems = newProblem;
+	}							//method mutator (changer)
+											
+};
+
+
+console.log("The time it will take to repair this is generally: " + device.repairTime() + " hours.");
+device.addProblem(10);
+console.log("But with this many more problems, it will take: " + device.repairTime() + " hours.");
+
+
+/*
+
 	changeEmployee: function(){
 		console.log(empNames[0] + " cannot complete the repair ...");
-		for (var i=0, j=empNames.length; i < j; i++) {
+		for (var i=1, j=empNames.length; i < j; i++) {
 			console.log(empNames[i] + ", you're up!");
-			if (i !== j){
+			if (i+1 !== j){
 				console.log("For the love of God, " + empNames[i] + ", can you do anything right?!");
 			} else {
-				console.log("Team, I think we have a winner! Well done " + empNames[i]);};
+				console.log("Team, I think we have a winner! Get started " + empNames[i] + "!");
+			};
 		};	
-		return(empNames[i]);
-		},									//method mutator (changer)
+		return empNames;
+		},									//method mutator (changer) -- DONE
 	object: {
 		obj1: "1",
 		obj2: "2",
 		obj3: "3"
 	}													//property object
-											
-};
-
-//--------------------------------------------------
-
-/* --------test coding---------------
-
-// boolean function (true or false w/return)
-var canFixPhones = function (minutesPerRepair, hoursPerDay) {
-	var workLoad = (hoursPerDay * 60) / minutesPerRepair;
-	if (workLoad > totalRepairs) {
-		return booReturn === true;
-	} else {
-		return booReturn === false;
-	};
-};
-
-// number function 		
-var allocation = function(totalCustomers) {
-	while (totalCustomers > 0) { 										// condition block
-		console.log("Besides repairs, there are " + totalCustomers + " customers in the store.");	// code block
-		totalCustomers--;
-	}
-	return;
-};		
-
-//string function
-var resignation = function(reason, date) {
-	console.log("I have desided to resign on " + date + " because " + reason );
-};
-
-// array function
-
-
-
-//maincode
-delegation(totalRepairs, empNames.length);
-
-var booReturn = canFixPhones(30,8);
-	console.log("The thing is, it would be " + booReturn + " to say we can finish these in time.");
 	
-allocation(6);
-
-resignation("I have gone completely bald from stress", "01/18/2013");
-
-termination();
-
-*/
-
-/* ---------NOTATION------------
-
-var key = "strengths";
-
-console.log(student[key]);
-console.log(student.strengths);
-console.log(student["strengths"]);
-
-console.log(student["greetCust"]);
-console.log(student.greetCust);
-
-employee.greetCust();
-employee["greetCust"]();
-
-employee.greetCust = function() {
-	console.log("I was fired today, I'm outta here!");
-	};
-	
-employee.greetCust();
-
-//how do we access all of this information?
-
-for (var key in employee) {
-	console.log("Key: " + key + ", Value: ", employee[key]);
-};
-
-// KEY variable is overwritten each time the loop runs.
-//student.key = key is a value in the object
-//student[key] = i am calling the variable key
-
-*/
-
-
-
-//Argument Boolean
-	//back
-	//math
-	//return boolean
-	
-//Argument String
-	//local variables
-	//return string
-
-//Argument Number
-	//for loop
-		//nested loop
-	//return number
-	
-//Argument Array
-	//while loop
-	//return array
-
-
-//---MAIN CODE---
-	
-//Output
-//Retuned values
-
-
-//---FINISH----
-
-	
+	*/
