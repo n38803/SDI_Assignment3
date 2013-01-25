@@ -24,9 +24,9 @@ var empNames = ["Shaun", "Jon", "Eric", "Matt"];
 //--------------------------------------------------
 	
 //--OBJECT
-	var device = { 
+var device = { 
 	name: "HTC EVO",												//property string
-	repairable: true;												//property boolean
+	repairable: true,												//property boolean
 	problems: 3,													//property number
 	issues: ["Freezing", "PowerCycling", "TSP Failure"],			//property array
 	delegation: function(repairs, employees) {									
@@ -41,17 +41,28 @@ var empNames = ["Shaun", "Jon", "Eric", "Matt"];
 	totalDevices: function() {																				
 		//return
 	},									//method accessor (getter)
-	changeDevices: function(){
-		//return
-	}									//method mutator (changer)
-	var object = {
-		item1: "",
-		item2: ""
-	};												//property object
+	changeEmployee: function(){
+		console.log(empNames[0] + " cannot complete the repair ...");
+		for (var i=0, j=empNames.length; i < j; i++) {
+			console.log(empNames[i] + ", you're up!");
+			if (i !== j){
+				console.log("For the love of God, " + empNames[i] + ", can you do anything right?!");
+			} else {
+				console.log("Team, I think we have a winner! Well done " + empNames[i]);};
+		};	
+		return(empNames[i]);
+		},									//method mutator (changer)
+	object: {
+		obj1: "1",
+		obj2: "2",
+		obj3: "3"
+	}													//property object
+											
 };
+
 //--------------------------------------------------
 
-
+/* --------test coding---------------
 
 // boolean function (true or false w/return)
 var canFixPhones = function (minutesPerRepair, hoursPerDay) {
@@ -78,19 +89,8 @@ var resignation = function(reason, date) {
 };
 
 // array function
-var adjectives = [
-	"sleeps on the job",
-	"doesn't even know where he is",
-	"calls out all the time.",
-	"is genuinely crazy."
-	];
-var termination = function() {
-	console.log("I'm firing everyone first!");
-	for (var i=0, j=empNames.length; i < j; i++) {
-		console.log(empNames[i] + " " + adjectives[i] + " ...");
-	}; 
-	return console.log("... I just can't take it anymore!");
-};
+
+
 
 //maincode
 delegation(totalRepairs, empNames.length);
@@ -104,7 +104,9 @@ resignation("I have gone completely bald from stress", "01/18/2013");
 
 termination();
 
-/*
+*/
+
+/* ---------NOTATION------------
 
 var key = "strengths";
 
