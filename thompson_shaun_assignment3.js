@@ -19,7 +19,7 @@
 	//method mutator		--
 
 //--GLOBAL VARIABLES	
-var repairTime = 10 
+var repairTime = 10; 
 var empNames = ["Shaun", "Jon", "Eric", "Matt, Joseph, Danny, Thomas, Ralf, Jacob, Henry"];
 var adjectives = [
 	"sleeps on the job",
@@ -33,17 +33,23 @@ var adjectives = [
 
 //--OBJECT
 var store = {
-	name: "Wireless South Jersey",
-	staff: 12,
-	technicians: 6,
+	name: "Wireless South Jersey",										//property string
+	staff: 12,															//property number
+	technicians: 6,														//property number
+	termination: function(exhausted) {
+		console.log("After further deliberation, I've decided to terminate everyone!");
+		for (var i=0, j=empNames.length; i < j; i++) {
+			console.log(empNames[i] + " " + adjectives[i] + " ...");
+		}; 
+		console.log(exhausted);
+	},								//method procedure
+		
 	repair: device = { 
 		name: "HTC EVO",												//property string
 		repairable: true,												//property boolean
 		problems: 6,													//property number
-		issues: ["Hardware", "Software", "User Error"],					//property array
-
-// method procedure		
-
+		issues: ["Hardware", "Software", "User"],						//property array
+	
 		software: function(appAmnt, totalIssues) {									
 		if (appAmnt > 0) {
 			console.log("By golly, we have some work to do!");
@@ -54,21 +60,18 @@ var store = {
 			console.log("There are " + outcome + " possible directories for the root of your issue(s).");
 			return outcome;
 	},					//method function
+	
 		repairTime: function() {
 		var totalTime = this.problems * this.issues.length / store.technicians;
 		return totalTime;
 	},									//method accessor (getter)
+	
 		addProblem: function(newProblem){
 		this.problems = newProblem;
 		}							//method mutator (changer)											
 	},
-	termination: function(exhausted) {
-			console.log("After further deliberation, I've decided to terminate everyone!");
-			for (var i=0, j=empNames.length; i < j; i++) {
-				console.log(empNames[i] + " " + adjectives[i] + " ...");
-			}; 
-			console.log(exhausted);
-	}
+	
+	
 };
 
 //----Main CODE-----
