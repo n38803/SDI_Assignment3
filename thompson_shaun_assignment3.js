@@ -14,9 +14,9 @@
 	
 	//method procedure 		-- NO RETURN {all else requires return}
 	
-	//method function		--
-	//method accessor		--
-	//method mutator		--
+	//method function		-- function
+	//method accessor		-- "getter"
+	//method mutator		-- "changer"
 
 
 
@@ -39,19 +39,25 @@ var totalCustomers = 3,
 		"thinks he was abducted by aliens",
 		"talks like yoda",
 		"wears his uniform inside out"
-	]; 
+	];
+ 
 //------------------------
-	
-/*		var fired = "I had to fire them all.";
-		console.log(exhausted);
-		return fired;
-*/
 
 //----MAIN OBJECT---------
 var store = {
 	name: "Wireless South Jersey",										//property string
 	staff: 12,															//property number
 	technicians: 6,														//property number
+	location: function(wsj) {
+		if(wsj == "Is This Wireless South Jersey?") { return true; }
+		else { return false; }
+		},
+	humanResources: function(json) {
+		for (var i = 0; i < json.employees.length; i++){
+			var employee = json.employees[i];
+			console.log("User ID: " + employee.id + ", Name: " + employee.name + ", Age: " + employee.age + ", Status: " + employee.status);
+			};
+	},								//json DATA
 	allocation: function(){
 		while (totalCustomers > 1) { 									//while loop
 			var currentCustomers = (totalCustomers - 1);			
@@ -69,7 +75,10 @@ var store = {
 		console.log("Unfortunately, none of my technicians were able to complete your repair.");
 		for (var i=0, j=empNames.length; i < j; i++) {					//for loop
 			console.log(empNames[i] + " " + adjectives[i] + " ...");
-		}; 
+		};
+		var fired = "I had to fire them all.";
+		console.log(exhausted);
+		return fired; 
 													//return string
 	},								//method procedure	
 	repair: device = { 
@@ -79,7 +88,7 @@ var store = {
 		issues: ["No Volume", "Freezing", "Drains Battery"],			//property array
 	
 		software: function(appAmnt, totalIssues) {									
-			if (appAmnt > 0) {
+			if (appAmnt > 0 && appAmnt < store.technicians) {
 				console.log("There are some minor things we will need to go over before beginning the repair though.");
 				if (store.technicians >= 1){
 					console.log("I have " + store.technicians + " technicians available to work on your device, I will decide who is best fit for this repair.");
@@ -93,7 +102,7 @@ var store = {
 			};
 		var outcome = appAmnt * totalIssues;
 			return outcome;												//number return
-	},					//method function
+	},					//method function w/boolean conditional & nested conditional
 	
 		getRepairTime: function() {
 		var totalTime = this.problems * this.issues.length / store.technicians;
@@ -105,15 +114,19 @@ var store = {
 		}							//method mutator (changer)											
 	},												//property object
 	
-	
 };
 //------------------------
 	
 
 //----MAIN CODE-----------
-store.allocation();
 
-	
+if (store.location("Is This Wireless South Jersey?") == false){
+
+console.log("------------------Customer Enters----------------------------");
+	store.allocation();
+
+console.log("------------------Customer Has Explained Reason for Visit----");
+
 	//call accessor
 	var totalTime = device.getRepairTime();
 	console.log("Assuming your initial description of the issue is accurate, the repair itself will take approximately " + totalTime + " hours.");
@@ -127,10 +140,21 @@ store.allocation();
 	device.changeRepairTime(downloadedApps);												
 	console.log("Therefore, we advise up to " + device.getRepairTime() + " hours total to diagnose and repair your " + device.name + ".");
 
+console.log("------------------Customer Returns Hours Later---------------");
+
 	//string argument
-	store.termination("... I just couldn't take it anymore!");
+	var fired = store.termination("... I just couldn't take it anymore!");
+	console.log(fired);
+
+console.log("-------------------------------------------------------------");
+console.log("Dear Human Resources, below you will find the information as requested by your office:");	
+store.humanResources(json);
+
+
+} else {
+	console.log("Sorry you are at the wrong location. Frown Face, Frown Face!");
+};
 
 //------------------------
 
 //----FINISH-----------------------------------------------------------------------------------------
-
